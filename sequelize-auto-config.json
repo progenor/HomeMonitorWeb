@@ -1,0 +1,14 @@
+{
+  "dialect": "oracle",
+  "host": "asd",
+  "port": "asd",
+  "additional": {
+    "timestamps": false
+  },
+  "skipTables": [],
+  "caseProp": "l",
+  "caseFile": "p",
+  "singularize": false,
+  "caseModel": "p",
+  "lang": "ts"
+}
