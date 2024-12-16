@@ -10,7 +10,6 @@ class SensorData extends Model {
   declare LIGHT: number;
   declare PIR: boolean;
   declare AIRQUALITY: number;
-  declare DEVICE_ID: number;
 }
 
 SensorData.init(
@@ -20,9 +19,13 @@ SensorData.init(
       primaryKey: true,
       autoIncrement: true,
       allowNull: false,
+      references: {
+        model: Device,
+        key: "DEVICE_ID",
+      },
     },
     TAKEN_DATETIME: {
-      type: DataTypes.TIME,
+      type: DataTypes.DATE,
       allowNull: true,
     },
     TEMP: {
@@ -44,14 +47,6 @@ SensorData.init(
     AIRQUALITY: {
       type: DataTypes.INTEGER,
       allowNull: true,
-    },
-    DEVICE_ID: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: Device,
-        key: "DEVICE_ID",
-      },
-      allowNull: false,
     },
   },
   {
