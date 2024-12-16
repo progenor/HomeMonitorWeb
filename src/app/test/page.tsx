@@ -15,9 +15,9 @@ const page = async (props: Props) => {
     <div>
       <h1>Sziaaaa</h1>
       {users.map((user) => (
-        <div key={user.id}>
-          <p>{user.name}</p>
-          <p>{user.email}</p>
+        <div key={user.USER_ID}>
+          <p>{user.USER_NAME}</p>
+          <p>{user.EMAIL}</p>
         </div>
       ))}
     </div>
