@@ -38,7 +38,8 @@ import {
 
 export type SensorData = {
   SENSORDEVICE_ID: number;
-  TAKEN_DATETIME: string;
+  SENSORDATA_ID: number;
+  TAKEN_DATETIME: Date;
   TEMP: number;
   HUMIDITY: number;
   LIGHT: number;
@@ -48,12 +49,20 @@ export type SensorData = {
 
 const columns: ColumnDef<SensorData>[] = [
   {
-    accessorKey: "SENSORDEVICE_ID",
+    accessorKey: "SENSORDATA_ID",
     header: "ID",
+  },
+  {
+    accessorKey: "SENSORDEVICE_ID",
+    header: "Device ID",
   },
   {
     accessorKey: "TAKEN_DATETIME",
     header: "Taken Datetime",
+    cell: ({ getValue }) => {
+      const value = getValue<Date>();
+      return value ? value.toISOString() : null;
+    },
   },
   {
     accessorKey: "TEMP",

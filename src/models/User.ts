@@ -39,14 +39,14 @@ User.init(
       allowNull: true,
     },
     CREATE_DATE: {
-      type: DataTypes.TIME,
+      type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
+      allowNull: false,
     },
   },
   {
     tableName: "USERS",
-    createdAt: "CREATE_DATE",
-    updatedAt: false,
+    timestamps: false,
     sequelize: sequelize,
   }
 );

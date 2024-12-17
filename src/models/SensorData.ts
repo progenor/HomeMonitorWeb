@@ -4,6 +4,7 @@ import Device from "@/models/Device";
 
 class SensorData extends Model {
   declare SENSORDEVICE_ID: number;
+  declare SENSORDATA_ID: number;
   declare TAKEN_DATETIME: Date;
   declare TEMP: number;
   declare HUMIDITY: number;
@@ -16,13 +17,17 @@ SensorData.init(
   {
     SENSORDEVICE_ID: {
       type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
       allowNull: false,
       references: {
         model: Device,
         key: "DEVICE_ID",
       },
+    },
+    SENSORDATA_ID: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+      allowNull: false,
     },
     TAKEN_DATETIME: {
       type: DataTypes.DATE,
