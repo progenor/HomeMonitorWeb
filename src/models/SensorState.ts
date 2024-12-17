@@ -6,7 +6,7 @@ class SensorState extends Model {
   declare SENSOR_ID: number;
   declare SENSOR_NAME: string;
   declare DEVICE_ID: number;
-  declare COMPONENT_ID: string;
+  declare COMPONENT_ID: number;
   declare CURRENT_STATE: boolean;
   declare CHANGED_STATE: object;
   declare CALIBRATE_OFFSET: number;
@@ -33,7 +33,7 @@ SensorState.init(
       },
     },
     COMPONENT_ID: {
-      type: DataTypes.STRING(30),
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     CURRENT_STATE: {
