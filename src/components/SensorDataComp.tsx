@@ -2,11 +2,23 @@
 import React from "react";
 import useSWR from "swr";
 import DataTableSensorData from "@/components/DataTableSensorData";
+import { useAuth } from "@/context/AuthContext";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 const SensorDataComp = () => {
-  const { data, error } = useSWR("/api/sensor-data", fetcher);
+  //FIXME: for some reason the user_id is not saved in the context/ cant get it for some reason
+  // const { userId } = useAuth();
+  // if (!userId) {
+  //   console.log(userId);
+
+  //   return <div>Not logged in</div>;
+  // }
+  const userId = 2;
+  const { data, error } = useSWR(
+    userId ? `/api/sensor-data?user_id=${userId}` : null,
+    fetcher
+  );
 
   if (error) {
     return <div>Error loading data</div>;
