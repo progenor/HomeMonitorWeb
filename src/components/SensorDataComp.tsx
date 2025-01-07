@@ -1,21 +1,20 @@
+"use client";
 import React from "react";
-import DataTableSensorData from "@/components/dataTableSensorData";
-import SensorData from "@/models/SensorData";
+import useSWR from "swr";
+import DataTableSensorData from "@/components/DataTableSensorData";
 
-type Props = {};
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
-async function getData() {
-  const data = await SensorData.findAll({
-    order: [["TAKEN_DATETIME", "DESC"]],
-    limit: 20,
-  });
-  // console.log(data);
+const SensorDataComp = () => {
+  const { data, error } = useSWR("/api/sensor-data", fetcher);
 
-  return data.map((item) => item.get({ plain: true }));
-}
+  if (error) {
+    return <div>Error loading data</div>;
+  }
 
-const SensorDataComp = async (props: Props) => {
-  const data = await getData();
+  if (!data) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="p-2 flex flex-col">

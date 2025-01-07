@@ -61,7 +61,7 @@ const columns: ColumnDef<SensorData>[] = [
     header: "Taken Datetime",
     cell: ({ getValue }) => {
       const value = getValue<Date>();
-      return value ? value.toISOString() : null;
+      return value ? new Date(value).toISOString() : null;
     },
   },
   {
