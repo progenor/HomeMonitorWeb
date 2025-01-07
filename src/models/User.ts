@@ -6,7 +6,6 @@ class User extends Model {
   declare USER_NAME: string;
   declare EMAIL: string;
   declare PASSWORD_HASH: string;
-  declare ROLE: string;
   declare CREATE_DATE: Date;
 }
 
@@ -33,10 +32,6 @@ User.init(
     PASSWORD_HASH: {
       type: DataTypes.STRING(255),
       allowNull: false,
-    },
-    ROLE: {
-      type: DataTypes.STRING(20),
-      allowNull: true,
     },
     CREATE_DATE: {
       type: DataTypes.DATE,

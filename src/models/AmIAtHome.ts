@@ -7,7 +7,7 @@ class AmIAtHome extends Model {
   declare DEVICE_ID: number;
   declare AT_HOME: boolean;
   declare LAST_CHANGED_DATETIME: Date;
-  declare CHANGES: object;
+  declare WCHANGES: object;
 }
 
 AmIAtHome.init(
@@ -35,21 +35,9 @@ AmIAtHome.init(
       defaultValue: DataTypes.NOW,
       allowNull: false,
     },
-    CHANGES: {
+    WCHANGES: {
       type: DataTypes.JSON,
       allowNull: true,
-      validate: {
-        isValidChange(value: object) {
-          const state = value["state"];
-          const dateTime = value["dateTime"];
-          if (
-            !["at_home", "not_at_home"].includes(state) ||
-            isNaN(Date.parse(dateTime))
-          ) {
-            throw new Error("Invalid CHANGES value");
-          }
-        },
-      },
     },
   },
   {
