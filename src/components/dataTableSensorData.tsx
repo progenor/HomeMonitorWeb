@@ -110,6 +110,10 @@ const DataTableSensorData = ({ data }: { data: SensorData[] }) => {
     onColumnFiltersChange: setColumnFilters,
     onSortingChange: setSorting,
     onColumnVisibilityChange: setColumnVisibility,
+    globalFilterFn: (row, columnId, filterValue) => {
+      const value = row.getValue<string | number>(columnId);
+      return value.toString() === filterValue;
+    },
   });
 
   return (
